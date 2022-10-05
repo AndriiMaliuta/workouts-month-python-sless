@@ -15,6 +15,9 @@ def workouts_month(request):
         db = client['workouts']
         work_collection = db['workouts']
         # today = datetime.datetime.now()
-        workouts = work_collection.find({"month": month})
+        workouts_cursor = work_collection.find({"month": month})
+        workouts = []
+        for work in workouts_cursor:
+            workouts.append(work)
         return json.dumps(workouts)
     return "TEST"
