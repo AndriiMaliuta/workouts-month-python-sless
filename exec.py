@@ -16,5 +16,6 @@ def dates_test():
 
 if __name__ == '__main__':
     # dates_test()
-    str = "2019-05-20T10:07:44.537+00:00"
-    print(str[0:4])
+    date1 = datetime.datetime.fromisoformat("2022-01-01 00:00:00")
+    print(date1.timestamp())
+    print(datetime.datetime.fromtimestamp(1640988000.0).__eq__(date1))

@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import functions_framework
@@ -16,13 +17,13 @@ def workouts_month(request):
         client = pymongo.MongoClient(os.getenv("DB_URL"))
         db = client['workouts']
         work_collection = db['workouts']
-        # today = datetime.datetime.now()
         workouts_cursor = work_collection.find({"month": month}).sort("record", -1)
             # .find({"month": month, "creation_date": {"$gt": year}}).sort("record", -1)
         workouts = []
         for work in workouts_cursor:
-            # if work.get("creation_date")[-3] == year:
-            if work.get("creation_date")[0:4] == year:
+            print(work.get("workout_date")[0:4])
+            print("\n")
+            if work.get("workout_date")[0:4] == year:
                 workouts.append(work)
         print(">>> workouts data: \n")
         print(workouts)
